@@ -8,7 +8,8 @@
   "main": "index.js",
   "scripts": {
     "wdio": "wdio run ./wdio.conf.ts",
-    "demo": "wdio run ./wdio.conf.ts --cucumberOpts.tags='@demo'"
+    "demo": "wdio run ./wdio.conf.ts --cucumberOpts.tags='@demo'",
+    "demo:headless": "HEADLESS=true wdio run ./wdio.conf.ts --cucumberOpts.tags='@demo'"
   },
   "devDependencies": {
     "@types/node": "^25.6.0",

@@ -1,3 +1,4 @@
+const isHeadless = process.env.HEADLESS === "true";
 export const config: WebdriverIO.Config = {
   //
   // ====================
@@ -53,7 +54,13 @@ export const config: WebdriverIO.Config = {
     {
       browserName: "chrome",
       "goog:chromeOptions": {
-        args: ["--disable-web-security", "--start-maximized"],
+        args: [
+          "--disable-web-security",
+          "--start-maximized",
+          ...(isHeadless
+            ? ["--headless", "--disable-gpu", "--no-sandbox"]
+            : []),
+        ],
       },
     },
   ],
@@ -151,7 +158,7 @@ export const config: WebdriverIO.Config = {
     // <boolean> fail if there are any undefined or pending steps
     strict: false,
     // <string> (expression) only execute the features or scenarios with tags matching the expression
-    tagExpression: "@demo",
+    tagExpression: "",
     // <number> timeout for step definitions
     timeout: 60000,
     // <boolean> Enable this config to treat undefined definitions as warnings.

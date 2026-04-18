@@ -31,5 +31,5 @@ When("the user login with a valid account", async () => {
   // await browser.pause(5000);
   await loginButton.click();
 
-  await browser.debug();
+  // await browser.debug();
 });
