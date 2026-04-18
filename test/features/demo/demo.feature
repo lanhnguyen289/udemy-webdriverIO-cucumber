@@ -1,10 +1,10 @@
-Feature: Feature name
+Feature: Inventory feature
 
     Feature Description
     This is the demo Feature
     @demo
-    Scenario: Navigate to the login screen
+    Scenario: Navigate to the inventory web
 
-        Given the user launches the CURA web app
-        When the user clicks on Make Appointment button
-        Then the login page should be displayed
+        Given the user go to the inventory web
+        When the user login with a valid account
+        # Then the user login with a anther account

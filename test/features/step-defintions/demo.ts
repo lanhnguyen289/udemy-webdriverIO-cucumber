@@ -12,15 +12,40 @@ import { Given, When, Then } from "@wdio/cucumber-framework";
  * https://katalon-demo-cura.herokuapp.com/profile.php#login
  */
 
-Given("the user launches the CURA web app", async () => {
-  await browser.url("https://katalon-demo-cura.herokuapp.com/");
-  await expect(browser).toHaveTitle("CURA Healthcare Service");
+Given("the user go to the inventory web", async () => {
+  await browser.url("https://www.saucedemo.com/");
+  await browser.waitUntil(async () => {
+    return (await browser.getTitle()) === "Swag Labs";
+  });
+  await browser.maximizeWindow();
 });
 
-When("the user clicks on Make Appointment button", async () => {
-  await $("=Make Appointment").click();
-});
+When("the user login with a valid account", async () => {
+  let usernameInput = await $("#user-name");
+  let passwordInput = await $("#password");
+  let loginButton = await $("#login-button");
 
-Then("the login page should be displayed", async () => {
-  await expect(browser).toHaveUrl(/.*#login$/);
+  await usernameInput.setValue("standard_user");
+  await passwordInput.setValue("secret_sauce");
+  // await browser.refresh();
+  await browser.pause(5000);
+  await loginButton.click();
+  await browser.pause(2000);
+
+  await browser.deleteCookies();
+  await browser.url("https://www.saucedemo.com/");
+  await browser.waitUntil(async () => {
+    return (await browser.getTitle()) === "Swag Labs";
+  });
+  await browser.maximizeWindow();
+
+  await usernameInput.setValue("problem_user");
+  await passwordInput.setValue("secret_sauce");
+  await loginButton.click();
+
+  await browser.back();
+  await browser.pause(5000);
+  await browser.forward();
+
+  await browser.debug();
 });
