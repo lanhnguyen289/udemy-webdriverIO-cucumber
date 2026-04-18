@@ -17,7 +17,7 @@ Given("the user go to the inventory web", async () => {
   await browser.waitUntil(async () => {
     return (await browser.getTitle()) === "Swag Labs";
   });
-  await browser.maximizeWindow();
+  // await browser.maximizeWindow();
 });
 
 When("the user login with a valid account", async () => {
@@ -28,24 +28,8 @@ When("the user login with a valid account", async () => {
   await usernameInput.setValue("standard_user");
   await passwordInput.setValue("secret_sauce");
   // await browser.refresh();
-  await browser.pause(5000);
+  // await browser.pause(5000);
   await loginButton.click();
-  await browser.pause(2000);
-
-  await browser.deleteCookies();
-  await browser.url("https://www.saucedemo.com/");
-  await browser.waitUntil(async () => {
-    return (await browser.getTitle()) === "Swag Labs";
-  });
-  await browser.maximizeWindow();
-
-  await usernameInput.setValue("problem_user");
-  await passwordInput.setValue("secret_sauce");
-  await loginButton.click();
-
-  await browser.back();
-  await browser.pause(5000);
-  await browser.forward();
 
   await browser.debug();
 });
