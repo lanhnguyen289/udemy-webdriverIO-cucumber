@@ -1,4 +1,5 @@
 import { Given, When, Then } from "@wdio/cucumber-framework";
+import { account } from "../data/inventory.ts";
 
 /**
  * Selectors
@@ -25,8 +26,8 @@ When("the user login with a valid account", async () => {
   let passwordInput = await $("#password");
   let loginButton = await $("#login-button");
 
-  await usernameInput.setValue("standard_user");
-  await passwordInput.setValue("secret_sauce");
+  await usernameInput.setValue(account.username);
+  await passwordInput.setValue(account.password);
   // await browser.refresh();
   // await browser.pause(5000);
   await loginButton.click();

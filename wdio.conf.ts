@@ -1,3 +1,5 @@
+import dotenv from "dotenv";
+dotenv.config();
 const isHeadless = process.env.HEADLESS === "true";
 export const config: WebdriverIO.Config = {
   //
